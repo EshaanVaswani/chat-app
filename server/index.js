@@ -25,6 +25,10 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  res.send("The server is up and running ...");
+});
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
