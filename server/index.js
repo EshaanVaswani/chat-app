@@ -15,13 +15,12 @@ app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      fontSrc: [
-        "'self'",
-        "https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2",
-      ],
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'none'"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      },
     },
   })
 );
