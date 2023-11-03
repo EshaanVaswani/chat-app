@@ -6,7 +6,6 @@ const messageRoutes = require("./routes/messagesRoute");
 const app = express();
 const socket = require("socket.io");
 const helmet = require("helmet");
-const helmetCsp = require("helmet-csp");
 require("dotenv").config();
 
 app.use(cors());
@@ -16,12 +15,13 @@ app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 
 app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'none'"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      },
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      fontSrc: [
+        "'self'",
+        "https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2",
+      ],
     },
   })
 );
